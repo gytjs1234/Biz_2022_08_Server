@@ -22,7 +22,6 @@ public class UserVO implements UserDetails { // extends User {
 
 	private static final long serialVersionUID = 1L;
 
-	private long id;
 	private String username;
 	private String password;
 	private boolean isEnabled;
@@ -34,9 +33,8 @@ public class UserVO implements UserDetails { // extends User {
 	private String email;
 	private String phone;
 	private String address;
-	
 	private String realname;
-	private String nickname;
+	private String nickname;       
 
 
 }

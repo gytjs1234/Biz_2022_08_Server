@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <c:set value="${pageContext.request.contextPath}" var="rootPath" />   
+
 <%@ taglib uri="http://www.springframework.org/security/tags"  prefix="sec"%> 
 <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
    
@@ -15,13 +16,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>반갑습니다</h1>
-<sec:authorize access="isAuthenticated()">
+<h1>안녕하세요</h1>
+ <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username"/>
-	<sec:authentication property="principal.email"/>
-	<sec:authentication property="principal.realname"/>
+<%-- 	<sec:authentication property="principal.email"/>
+	<sec:authentication property="principal.realname"/> --%>
 </sec:authorize>
-
+ <br>
+	<a href="${rootPath}/todo/list">TODO 보기</a>
+	<a href="${rootPath}/user/join">회원가입하기</a>
+	<a href="${rootPath}/user/login">로그인</a>
 <form:form class="logout" action="${rootPath}/logout">
 	<button>로그아웃</button>
 </form:form>
