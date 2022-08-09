@@ -9,7 +9,7 @@
 
 
 
-	 <context:component-scan
+	<context:component-scan
 		base-package="com.callor.todo.service.auth" /> 
 	 	<!-- 일부 자동설정과 인증할때 함수를 사용할수 있도록 -->
 	<!-- permitAll : 누구나 접근가능하도록 설정 로그인이 되었거나, 로그인이 되지 않았거나 누구나 
@@ -17,22 +17,19 @@
 	<sec:http>
 		<sec:intercept-url pattern="/user/join"
 			access="permitAll" />
-		<sec:intercept-url pattern="/user/login" access="permitAll" />
+		<sec:intercept-url pattern="/user/login"
+			access="permitAll" />
 		<sec:intercept-url pattern="/user/mypage"
 			access="isAuthenticated()" />
-		<sec:intercept-url pattern="/login"
-			access="isAnonymous()" />
 		<!-- ** admin으로 시작되는 모든 경로 -->
 		<sec:intercept-url pattern="/"
 			access="isAuthenticated()" />
 		<sec:intercept-url pattern="/admin/**"
 			access="isAuthenticated() AND hasRole('ROLE_ADMIN')" />
-		<sec:form-login />
-
 		<sec:form-login
-			login-page="/user/login>error=LOGIN_NEED"
+			login-page="/user/login?error=LOGIN_NEED"
 			login-processing-url="/user/login" username-parameter="username"
-			password-parameter="passwword" />
+			password-parameter="password" />
 		<sec:logout logout-url="/logout" invalidate-session="true"
 			delete-cookies="JESSIONID" logout-success-url="/user/login" />
 		<sec:logout />

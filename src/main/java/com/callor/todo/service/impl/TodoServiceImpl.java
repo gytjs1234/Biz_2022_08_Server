@@ -17,25 +17,20 @@ public class TodoServiceImpl implements TodoService {
 	private TodoDao todoDao;
 
 	@Bean
-	public void create_table() {
-		todoDao.create_todo_table();
-	}
-
 	@Override
 	public void create_todo_table() {
+		todoDao.create_todo_table();
 
 	}
 
 	@Override
 	public List<TodoVO> selectAll() {
-
 		return todoDao.selectAll();
 	}
 
 	@Override
 	public TodoVO findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return todoDao.findById(id);
 	}
 
 	@Override
@@ -46,14 +41,19 @@ public class TodoServiceImpl implements TodoService {
 
 	@Override
 	public int update(TodoVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		vo.setComp(true);
+
+		return todoDao.update(vo);
 	}
 
 	@Override
 	public int delete(String id) {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<TodoVO> selectComp() {
+		return todoDao.selectComp();
 	}
 
 }

@@ -5,11 +5,11 @@
 
 <mapper namespace="com.callor.todo.persistance.UserDao">
 
- 	<select id="selectAll" resultType="UserVO">
- 		SELECT * FROM tbl_users
- 	</select>
+	<select id="selectAll" resultType="UserVO">
+		SELECT * FROM tbl_users
+	</select>
 	<select id="findById" resultType="UserVO">
-	select * from tbl_users where username = #{username} 
+		select * from tbl_users where username = #{username}
 	</select>
 
 	<update id="update"></update>
@@ -78,6 +78,10 @@
 			(#{vo.username},#{vo.authority})
 		</foreach>
 	</insert>
+	<select id="select_auths" resultType="AuthorityVO">
+		select * from tbl_authorities where username = #{username}
+	</select>
+
 
 
 </mapper> 

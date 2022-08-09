@@ -5,42 +5,57 @@
 
 <mapper namespace="com.callor.todo.persistance.TodoDao">
 
- 	<select id="selectAll" resultType="TodoVO">
- 	 select * from tbl_todo
- 	</select>
- 	<select id="findById" resultType="TodoVO">
- 	</select>
- 	
+	<select id="selectAll" resultType="TodoVO">
+		select * from tbl_todoList where comp = false order by date and time desc
+	</select>
+
+	<select id="findById" resultType="TodoVO">
+		select * from tbl_todoList where seq=#{seq}
+	</select>
+
+	<select id="selectComp" resultType="TodoVO">
+		select * from tbl_todoList where comp = true order by date and time desc
+	</select>
+
 	<insert id="insert" parameterType="TodoVO">
-		insert into tbl_todo(
+		insert into tbl_todoList(
 		seq,
-		t_name,
+		username,
 		date,
 		time,
 		todo,
-		end_date
+		comp
 		) values (
 		#{seq},
-		#{t_name},
+		#{username},
 		#{date},
 		#{time},
 		#{todo},
-		#{end_date}
+		#{comp}
 		)
 	</insert>
 
 	<select id="create_todo_table">
-		CREATE TABLE IF NOT EXISTS tbl_todo(
+		CREATE TABLE IF NOT EXISTS tbl_todoList(
 		seq bigint auto_increment PRIMARY KEY,
-		t_name varchar(30),
+		username varchar(30),
 		date VARCHAR(20) NOT NULL,
 		time VARCHAR(30),
 		todo VARCHAR(125),
-		end_date VARCHAR(30)
+		comp boolean default false
 		)
 	</select>
 
- 	<update id="update"></update>
- 	<delete id="delete"></delete>
- 
- </mapper> 
+	<update id="update" parameterType="TodoVO">
+      update tbl_todoList set
+         username = #{username},
+         date = #{date},
+         time = #{time},
+         todo = #{todo},
+         comp = #{comp}
+      where seq = #{seq}
+   </update>
+   
+	<delete id="delete"></delete>
+
+</mapper> 

@@ -23,7 +23,7 @@
 	<sec:authentication property="principal.realname"/> --%>
 </sec:authorize>
  <br>
-	<a href="${rootPath}/todo/list">TODO 보기</a>
+	<a href="${rootPath}/todo">TODO 보기</a>
 	<a href="${rootPath}/user/join">회원가입하기</a>
 	<a href="${rootPath}/user/login">로그인</a>
 <form:form class="logout" action="${rootPath}/logout">
